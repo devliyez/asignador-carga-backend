@@ -32,7 +32,6 @@ public class Carga {
     private String destino;
     private String descripcion;
 
-    @Column
     private Double cotizacion;
     private String estado;
     private Boolean habilitado;

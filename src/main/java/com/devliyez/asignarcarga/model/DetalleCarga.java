@@ -13,18 +13,18 @@ public class DetalleCarga {
     private Long id;
 
     @Column(nullable = false)
-    private String producto; // Ej: "Papas", "Plásticos"
+    private String producto;
 
     @Column(nullable = false)
     private Integer cantidad;
 
     @Column(nullable = false)
-    private Double peso; // Peso de este ítem en KG
+    private Double peso;
 
     @Column(nullable = false)
     private Double volumen;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "carga_id", nullable = false) // Columna FK en PostgreSQL
+    @JoinColumn(name = "carga_id", nullable = false)
     private Carga carga;
 }
