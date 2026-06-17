@@ -3,7 +3,6 @@ package com.devliyez.asignarcarga.services;
 import com.devliyez.asignarcarga.dto.transportistaRegistrar;
 import com.devliyez.asignarcarga.model.Transportista;
 import com.devliyez.asignarcarga.model.Usuario;
-import com.devliyez.asignarcarga.model.Vehiculo;
 import com.devliyez.asignarcarga.repository.TransportistaRepository;
 import com.devliyez.asignarcarga.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
@@ -63,6 +62,8 @@ public class TransportistaServiceImpl implements TransportistaService{
         t.setTelefono(transportista.getTelefono());
         t.setDisponible(transportista.getDisponible());
         t.setUsuario(transportista.getUsuario());
+
+        transportistaRepository.save(t);
 
         return t;
     }

@@ -2,7 +2,6 @@ package com.devliyez.asignarcarga.services;
 
 import com.devliyez.asignarcarga.dto.transportistaRegistrar;
 import com.devliyez.asignarcarga.model.Transportista;
-import com.devliyez.asignarcarga.model.Vehiculo;
 
 import java.util.List;
 import java.util.Optional;
