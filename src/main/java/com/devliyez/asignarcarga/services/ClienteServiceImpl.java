@@ -72,6 +72,11 @@ public class ClienteServiceImpl implements ClienteService{
     @Override
     public void deleteCliente(Long id) {
 
+        Cliente c = clienteRepository.findById(id).orElseThrow(() -> new EntityNotFoundException());
+
+        Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new EntityNotFoundException());
+
+        usuario.setHabilitado(false);
 
     }
 
