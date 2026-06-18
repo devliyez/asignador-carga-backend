@@ -1,10 +1,13 @@
 package com.devliyez.asignarcarga.services;
 
 import com.devliyez.asignarcarga.dto.transportistaRegistrar;
+import com.devliyez.asignarcarga.dto.transportistaRequest;
+import com.devliyez.asignarcarga.dto.transportistaResponse;
 import com.devliyez.asignarcarga.model.Transportista;
 import com.devliyez.asignarcarga.model.Usuario;
 import com.devliyez.asignarcarga.repository.TransportistaRepository;
 import com.devliyez.asignarcarga.repository.UsuarioRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,17 +24,24 @@ public class TransportistaServiceImpl implements TransportistaService{
     private final UsuarioRepository usuarioRepository;
 
     @Override
-    public List<Transportista> getTransportistas(){
-        return transportistaRepository.findAll();
+    public List<transportistaResponse> getTransportistas(){
+        return transportistaRepository.findAll()
+                .stream()
+                .map(transportistaResponse ::new)
+                .toList();
     }
 
     @Override
-    public Optional<Transportista> getTransportistaById(Long id) {
-        return transportistaRepository.findById(id);
+    public transportistaResponse getTransportistaById(Long id) {
+
+        Transportista t = transportistaRepository.findById(id).
+                orElseThrow(() -> new EntityNotFoundException("Transportista no encontrado"));
+
+        return new transportistaResponse(t);
     }
 
     @Override
-    public Transportista postTransportista(transportistaRegistrar dto ) {
+    public transportistaResponse postTransportista(transportistaRegistrar dto ) {
 
         Usuario usuario = new Usuario();
 
@@ -48,24 +58,21 @@ public class TransportistaServiceImpl implements TransportistaService{
         transportista.setDisponible(true);
         transportista.setUsuario(usuarioGuardado);
 
-
-
-        return transportistaRepository.save(transportista);
+        return new transportistaResponse(transportistaRepository.save(transportista));
     }
 
     @Override
-    public Transportista updateTransportista(Transportista transportista, Long id) {
+    public transportistaResponse updateTransportista(transportistaRequest transportista, Long id) {
 
         Transportista t = transportistaRepository.findById(id).orElseThrow(() -> new RuntimeException("Transportista no encontrado"));
 
         t.setNombre(transportista.getNombre());
         t.setTelefono(transportista.getTelefono());
         t.setDisponible(transportista.getDisponible());
-        t.setUsuario(transportista.getUsuario());
 
         transportistaRepository.save(t);
 
-        return t;
+        return new transportistaResponse(t);
     }
 
     @Override

@@ -1,8 +1,11 @@
 package com.devliyez.asignarcarga.services;
 
 
+import com.devliyez.asignarcarga.dto.cargaRequest;
+import com.devliyez.asignarcarga.dto.cargaResponse;
 import com.devliyez.asignarcarga.model.Carga;
 import com.devliyez.asignarcarga.repository.CargaRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,26 +20,46 @@ public class CargaServiceImpl implements CargaService {
 
 
     @Override
-    public List<Carga> getCarga() {
-        return cargaRepository.findAll();
+    public List<cargaResponse> getCarga() {
+        return cargaRepository.findAll()
+                .stream()
+                .map(cargaResponse::new)
+                .toList();
     }
 
     @Override
-    public Optional<Carga> getCargaById(Long id){
-        return cargaRepository.findById(id);
+    public cargaResponse getCargaById(Long id){
+
+        Carga carga = cargaRepository.findById(id).
+                orElseThrow(() -> new EntityNotFoundException("No encontrado"));
+
+        return new cargaResponse(carga);
     }
 
     @Override
-    public Carga postCarga(Carga carga) {
+    public cargaResponse postCarga(cargaRequest carga) {
 
+        Carga c = new Carga();
 
-        carga.setHabilitado(true);
+        c.setFechaRecojo(carga.getFechaRecojo());
+        c.setFechaRegistro(carga.getFechaRegistro());
+        c.setDestino(carga.getDestino());
+        c.setOrigen(carga.getOrigen());
+        c.setPeso(carga.getPeso());
+        c.setVolumen(carga.getVolumen());
+        c.setDescripcion(carga.getDescripcion());
+        c.setCotizacion(carga.getCotizacion());
+        c.setEstado(carga.getEstado());
+        c.setCliente(carga.getCliente());
 
-        return cargaRepository.save(carga);
+        c.setHabilitado(true);
+        cargaRepository.save(c);
+
+        return new cargaResponse(c);
     }
 
     @Override
-    public Carga updateCarga(Carga carga, Long id) {
+    public cargaResponse updateCarga(cargaRequest carga, Long id) {
 
         Carga c = cargaRepository.findById(id).orElseThrow(() -> new RuntimeException("Carga no encontrada"));
 
@@ -49,8 +72,11 @@ public class CargaServiceImpl implements CargaService {
         c.setDescripcion(carga.getDescripcion());
         c.setFechaRegistro(carga.getFechaRegistro());
         c.setHabilitado(carga.getHabilitado());
+        c.setEstado(carga.getEstado());
 
-        return cargaRepository.save(c);
+        cargaRepository.save(c);
+
+        return new cargaResponse(c);
     }
 
     @Override

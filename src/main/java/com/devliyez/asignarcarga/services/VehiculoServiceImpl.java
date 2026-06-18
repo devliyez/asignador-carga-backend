@@ -1,8 +1,12 @@
 package com.devliyez.asignarcarga.services;
 
+import com.devliyez.asignarcarga.dto.transportistaResponse;
+import com.devliyez.asignarcarga.dto.vehiculoRequest;
+import com.devliyez.asignarcarga.dto.vehiculoResponse;
 import com.devliyez.asignarcarga.model.Transportista;
 import com.devliyez.asignarcarga.model.Vehiculo;
 import com.devliyez.asignarcarga.repository.VehiculoRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,17 +22,23 @@ public class VehiculoServiceImpl implements VehiculoService{
 
     // GET TODOS
     @Override
-    public List<Vehiculo> getVehiculos(){
-        return vehiculoRepository.findAll();
+    public List<vehiculoResponse> getVehiculos(){
+        return vehiculoRepository.findAll()
+                .stream()
+                .map(vehiculoResponse ::new)
+                .toList();
     }
 
     //GET VEHICULO POR ID
-    public Optional<Vehiculo> getVehiculoById(Long id){
-        return vehiculoRepository.findById(id);
+    public vehiculoResponse getVehiculoById(Long id){
+
+        Vehiculo v = vehiculoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException());
+
+        return new vehiculoResponse(v);
     }
 
     //POST VEHICULO
-    public Vehiculo postVehiculo(Vehiculo vehiculo){
+    public vehiculoResponse postVehiculo(vehiculoRequest vehiculo){
 
         if(vehiculo.getEstado() == null || vehiculo.getPlaca().equals("") || vehiculo.getVolumen_max() == null || vehiculo.getPeso_max() == null
         ){
@@ -43,11 +53,13 @@ public class VehiculoServiceImpl implements VehiculoService{
         v.setHabilitado(vehiculo.getHabilitado());
         v.setPeso_max(vehiculo.getPeso_max());
 
+        vehiculoRepository.save(v);
 
-        return vehiculoRepository.save(v);
+
+        return new vehiculoResponse(v);
     }
 
-    public Vehiculo updateVehiculo(Vehiculo vehiculo, Long id){
+    public vehiculoResponse updateVehiculo(vehiculoRequest vehiculo, Long id){
 
         Vehiculo v = vehiculoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Vehiculo no encontrado"));
@@ -58,7 +70,9 @@ public class VehiculoServiceImpl implements VehiculoService{
         v.setPeso_max(vehiculo.getPeso_max());
         v.setVolumen_max(vehiculo.getVolumen_max());
 
-        return vehiculoRepository.save(v);
+        vehiculoRepository.save(v);
+
+        return new vehiculoResponse(v);
     }
 
     public void deleteVehiculo(Long id){

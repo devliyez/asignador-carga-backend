@@ -1,6 +1,8 @@
 package com.devliyez.asignarcarga.services;
 
 import com.devliyez.asignarcarga.dto.clienteRegistrar;
+import com.devliyez.asignarcarga.dto.clienteRequest;
+import com.devliyez.asignarcarga.dto.clienteResponse;
 import com.devliyez.asignarcarga.model.Cliente;
 import com.devliyez.asignarcarga.model.Transportista;
 import com.devliyez.asignarcarga.model.Usuario;
@@ -21,23 +23,23 @@ public class ClienteServiceImpl implements ClienteService{
     private final UsuarioRepository usuarioRepository;
 
     @Override
-    public List<Cliente> getClientes() {
-        return clienteRepository.findAll();
+    public List<clienteResponse> getClientes() {
+        return clienteRepository.findAll()
+                .stream()
+                .map(clienteResponse :: new)
+                .toList();
     }
 
     @Override
-    public Optional<Cliente> getClienteById(Long id) {
+    public clienteResponse getClienteById(Long id) {
 
         Cliente c = clienteRepository.findById(id).orElseThrow(() ->
                 new EntityNotFoundException("Cliente no encontrado"));
-
-
-
-        return clienteRepository.findById(id);
+        return new clienteResponse(c);
     }
 
     @Override
-    public Cliente postCliente(clienteRegistrar dto) {
+    public clienteResponse postCliente(clienteRegistrar dto) {
 
         Usuario usuario = new Usuario();
 
@@ -53,20 +55,23 @@ public class ClienteServiceImpl implements ClienteService{
         cliente.setTelefono(dto.getTelefono());
         cliente.setUsuario(usuarioGuardado);
 
+        clienteRepository.save(cliente);
 
-        return clienteRepository.save(cliente);
+        return new clienteResponse(cliente);
     }
 
     @Override
-    public Cliente updateCliente(Cliente cliente, Long id) {
+    public clienteResponse updateCliente(clienteRequest cliente, Long id) {
 
-        Cliente c = clienteRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Cliente no encontrado"));
+        Cliente c = clienteRepository.findById(id).
+                orElseThrow(() -> new EntityNotFoundException("Cliente no encontrado"));
 
         c.setNombre(cliente.getNombre());
         c.setTelefono(cliente.getTelefono());
-        c.setUsuario(cliente.getUsuario());
 
-        return clienteRepository.save(c);
+        clienteRepository.save(c);
+
+        return new clienteResponse(c);
     }
 
     @Override
@@ -77,6 +82,8 @@ public class ClienteServiceImpl implements ClienteService{
         Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new EntityNotFoundException());
 
         usuario.setHabilitado(false);
+
+        usuarioRepository.save(usuario);
 
     }
 
