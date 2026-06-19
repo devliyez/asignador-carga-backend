@@ -1,19 +1,17 @@
 package com.devliyez.asignarcarga.services;
 
-import com.devliyez.asignarcarga.dto.clienteRegistrar;
-import com.devliyez.asignarcarga.dto.clienteRequest;
-import com.devliyez.asignarcarga.dto.clienteResponse;
-import com.devliyez.asignarcarga.model.Cliente;
+import com.devliyez.asignarcarga.dto.ClienteRegistrar;
+import com.devliyez.asignarcarga.dto.ClienteRequest;
+import com.devliyez.asignarcarga.dto.ClienteResponse;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ClienteService {
 
-    List<clienteResponse>getClientes();
-    clienteResponse getClienteById(Long id);
-    clienteResponse postCliente(clienteRegistrar dto);
-    clienteResponse updateCliente(clienteRequest cliente, Long id);
+    List<ClienteResponse>getClientes();
+    ClienteResponse getClienteById(Long id);
+    ClienteResponse postCliente(ClienteRegistrar dto);
+    ClienteResponse updateCliente(ClienteRequest cliente, Long id);
     void deleteCliente(Long id);
 
 }

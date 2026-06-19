@@ -6,12 +6,12 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-public class cargaRequest {
+public class CargaRequest {
 
     private LocalDateTime fechaRegistro;
     private LocalDateTime fechaRecojo;
-    private Integer peso;
-    private String volumen;
+    private Double peso;
+    private Double volumen;
     private String origen;
     private String destino;
     private String descripcion;

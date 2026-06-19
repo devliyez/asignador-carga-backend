@@ -1,14 +1,13 @@
 package com.devliyez.asignarcarga.dto;
 
+
 import lombok.Data;
 
 @Data
-public class transportistaRegistrar {
-
-    private String email;
-    private String password;
-    private String rol;
-
+public class TransportistaRequest {
     private String nombre;
     private String telefono;
+    private Boolean disponible;
+
+
 }

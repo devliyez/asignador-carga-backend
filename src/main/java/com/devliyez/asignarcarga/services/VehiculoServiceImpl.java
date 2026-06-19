@@ -1,9 +1,7 @@
 package com.devliyez.asignarcarga.services;
 
-import com.devliyez.asignarcarga.dto.transportistaResponse;
-import com.devliyez.asignarcarga.dto.vehiculoRequest;
-import com.devliyez.asignarcarga.dto.vehiculoResponse;
-import com.devliyez.asignarcarga.model.Transportista;
+import com.devliyez.asignarcarga.dto.VehiculoRequest;
+import com.devliyez.asignarcarga.dto.VehiculoResponse;
 import com.devliyez.asignarcarga.model.Vehiculo;
 import com.devliyez.asignarcarga.repository.VehiculoRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -11,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -22,23 +19,23 @@ public class VehiculoServiceImpl implements VehiculoService{
 
     // GET TODOS
     @Override
-    public List<vehiculoResponse> getVehiculos(){
+    public List<VehiculoResponse> getVehiculos(){
         return vehiculoRepository.findAll()
                 .stream()
-                .map(vehiculoResponse ::new)
+                .map(VehiculoResponse::new)
                 .toList();
     }
 
     //GET VEHICULO POR ID
-    public vehiculoResponse getVehiculoById(Long id){
+    public VehiculoResponse getVehiculoById(Long id){
 
         Vehiculo v = vehiculoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException());
 
-        return new vehiculoResponse(v);
+        return new VehiculoResponse(v);
     }
 
     //POST VEHICULO
-    public vehiculoResponse postVehiculo(vehiculoRequest vehiculo){
+    public VehiculoResponse postVehiculo(VehiculoRequest vehiculo){
 
         if(vehiculo.getEstado() == null || vehiculo.getPlaca().equals("") || vehiculo.getVolumen_max() == null || vehiculo.getPeso_max() == null
         ){
@@ -56,10 +53,10 @@ public class VehiculoServiceImpl implements VehiculoService{
         vehiculoRepository.save(v);
 
 
-        return new vehiculoResponse(v);
+        return new VehiculoResponse(v);
     }
 
-    public vehiculoResponse updateVehiculo(vehiculoRequest vehiculo, Long id){
+    public VehiculoResponse updateVehiculo(VehiculoRequest vehiculo, Long id){
 
         Vehiculo v = vehiculoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Vehiculo no encontrado"));
@@ -72,7 +69,7 @@ public class VehiculoServiceImpl implements VehiculoService{
 
         vehiculoRepository.save(v);
 
-        return new vehiculoResponse(v);
+        return new VehiculoResponse(v);
     }
 
     public void deleteVehiculo(Long id){

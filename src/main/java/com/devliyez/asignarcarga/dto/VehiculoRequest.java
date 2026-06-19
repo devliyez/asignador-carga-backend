@@ -1,10 +1,9 @@
 package com.devliyez.asignarcarga.dto;
 
-import com.devliyez.asignarcarga.model.Vehiculo;
 import lombok.Data;
 
 @Data
-public class vehiculoRequest {
+public class VehiculoRequest {
 
     private Double peso_max;
     private Double volumen_max;

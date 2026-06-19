@@ -3,7 +3,7 @@ package com.devliyez.asignarcarga.dto;
 import lombok.Data;
 
 @Data
-public class clienteRegistrar {
+public class ClienteRegistrar {
 
     private String email;
     private String password;

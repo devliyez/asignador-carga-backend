@@ -4,13 +4,13 @@ import com.devliyez.asignarcarga.model.Transportista;
 import lombok.Data;
 
 @Data
-public class transportistaResponse {
+public class TransportistaResponse {
 
     private String nombre;
     private String telefono;
     private Boolean disponible;
 
-    public transportistaResponse(Transportista transportista) {
+    public TransportistaResponse(Transportista transportista) {
         this.nombre = transportista.getNombre();
         this.telefono = transportista.getTelefono();
         this.disponible = transportista.getDisponible();

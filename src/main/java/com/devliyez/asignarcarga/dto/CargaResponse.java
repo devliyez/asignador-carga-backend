@@ -2,24 +2,17 @@ package com.devliyez.asignarcarga.dto;
 
 import com.devliyez.asignarcarga.model.Carga;
 import com.devliyez.asignarcarga.model.Cliente;
-import com.devliyez.asignarcarga.model.DetalleCarga;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.OneToMany;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
-public class cargaResponse {
+public class CargaResponse {
 
     private LocalDateTime fechaRegistro;
     private LocalDateTime fechaRecojo;
-    private Integer peso;
-    private String volumen;
+    private Double peso;
+    private Double volumen;
     private String origen;
     private String destino;
     private String descripcion;
@@ -28,7 +21,7 @@ public class cargaResponse {
     private Cliente cliente;
     //Aqui evito los Detalles
 
-    public cargaResponse(Carga carga) {
+    public CargaResponse(Carga carga) {
 
         this.fechaRecojo = carga.getFechaRecojo();
         this.fechaRegistro = carga.getFechaRegistro();

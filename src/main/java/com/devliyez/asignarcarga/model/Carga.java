@@ -24,10 +24,8 @@ public class Carga {
 
     private LocalDateTime fechaRecojo;
 
-
-
-    private Integer peso;
-    private String volumen;
+    private Double peso;
+    private Double volumen;
     private String origen;
     private String destino;
     private String descripcion;

@@ -1,10 +1,9 @@
 package com.devliyez.asignarcarga.services;
 
-import com.devliyez.asignarcarga.dto.clienteRegistrar;
-import com.devliyez.asignarcarga.dto.clienteRequest;
-import com.devliyez.asignarcarga.dto.clienteResponse;
+import com.devliyez.asignarcarga.dto.ClienteRegistrar;
+import com.devliyez.asignarcarga.dto.ClienteRequest;
+import com.devliyez.asignarcarga.dto.ClienteResponse;
 import com.devliyez.asignarcarga.model.Cliente;
-import com.devliyez.asignarcarga.model.Transportista;
 import com.devliyez.asignarcarga.model.Usuario;
 import com.devliyez.asignarcarga.repository.ClienteRepository;
 import com.devliyez.asignarcarga.repository.UsuarioRepository;
@@ -13,7 +12,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -23,23 +21,23 @@ public class ClienteServiceImpl implements ClienteService{
     private final UsuarioRepository usuarioRepository;
 
     @Override
-    public List<clienteResponse> getClientes() {
+    public List<ClienteResponse> getClientes() {
         return clienteRepository.findAll()
                 .stream()
-                .map(clienteResponse :: new)
+                .map(ClienteResponse:: new)
                 .toList();
     }
 
     @Override
-    public clienteResponse getClienteById(Long id) {
+    public ClienteResponse getClienteById(Long id) {
 
         Cliente c = clienteRepository.findById(id).orElseThrow(() ->
                 new EntityNotFoundException("Cliente no encontrado"));
-        return new clienteResponse(c);
+        return new ClienteResponse(c);
     }
 
     @Override
-    public clienteResponse postCliente(clienteRegistrar dto) {
+    public ClienteResponse postCliente(ClienteRegistrar dto) {
 
         Usuario usuario = new Usuario();
 
@@ -57,11 +55,11 @@ public class ClienteServiceImpl implements ClienteService{
 
         clienteRepository.save(cliente);
 
-        return new clienteResponse(cliente);
+        return new ClienteResponse(cliente);
     }
 
     @Override
-    public clienteResponse updateCliente(clienteRequest cliente, Long id) {
+    public ClienteResponse updateCliente(ClienteRequest cliente, Long id) {
 
         Cliente c = clienteRepository.findById(id).
                 orElseThrow(() -> new EntityNotFoundException("Cliente no encontrado"));
@@ -71,7 +69,7 @@ public class ClienteServiceImpl implements ClienteService{
 
         clienteRepository.save(c);
 
-        return new clienteResponse(c);
+        return new ClienteResponse(c);
     }
 
     @Override
