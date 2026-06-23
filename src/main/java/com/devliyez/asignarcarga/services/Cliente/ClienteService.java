@@ -1,4 +1,4 @@
-package com.devliyez.asignarcarga.services;
+package com.devliyez.asignarcarga.services.Cliente;
 
 import com.devliyez.asignarcarga.dto.ClienteRegistrar;
 import com.devliyez.asignarcarga.dto.ClienteRequest;

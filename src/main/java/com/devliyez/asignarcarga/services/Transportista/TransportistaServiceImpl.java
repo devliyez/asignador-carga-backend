@@ -1,4 +1,4 @@
-package com.devliyez.asignarcarga.services;
+package com.devliyez.asignarcarga.services.Transportista;
 
 import com.devliyez.asignarcarga.dto.TransportistaRegistrar;
 import com.devliyez.asignarcarga.dto.TransportistaRequest;
@@ -16,7 +16,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class TransportistaServiceImpl implements TransportistaService{
+public class TransportistaServiceImpl implements TransportistaService {
 
     private final TransportistaRepository transportistaRepository;
 

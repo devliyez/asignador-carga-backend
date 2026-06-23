@@ -1,4 +1,4 @@
-package com.devliyez.asignarcarga.services;
+package com.devliyez.asignarcarga.services.Vehiculo;
 
 
 import com.devliyez.asignarcarga.dto.VehiculoRequest;

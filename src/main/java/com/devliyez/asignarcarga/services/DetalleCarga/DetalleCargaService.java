@@ -1,4 +1,4 @@
-package com.devliyez.asignarcarga.services;
+package com.devliyez.asignarcarga.services.DetalleCarga;
 
 import com.devliyez.asignarcarga.dto.DetalleCargaRequest;
 import com.devliyez.asignarcarga.dto.DetallecargaResponse;

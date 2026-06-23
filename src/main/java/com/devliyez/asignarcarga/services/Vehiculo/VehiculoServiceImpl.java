@@ -1,4 +1,4 @@
-package com.devliyez.asignarcarga.services;
+package com.devliyez.asignarcarga.services.Vehiculo;
 
 import com.devliyez.asignarcarga.dto.VehiculoRequest;
 import com.devliyez.asignarcarga.dto.VehiculoResponse;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class VehiculoServiceImpl implements VehiculoService{
+public class VehiculoServiceImpl implements VehiculoService {
 
     private final VehiculoRepository vehiculoRepository;
 
@@ -37,7 +37,7 @@ public class VehiculoServiceImpl implements VehiculoService{
     //POST VEHICULO
     public VehiculoResponse postVehiculo(VehiculoRequest vehiculo){
 
-        if(vehiculo.getEstado() == null || vehiculo.getPlaca().equals("") || vehiculo.getVolumen_max() == null || vehiculo.getPeso_max() == null
+        if(vehiculo.getDisponible() == null || vehiculo.getPlaca().equals("") || vehiculo.getVolumen_max() == null || vehiculo.getPeso_max() == null
         ){
             throw new RuntimeException("No puede haber datos vacios");
         }
@@ -45,7 +45,7 @@ public class VehiculoServiceImpl implements VehiculoService{
         Vehiculo v = new Vehiculo();
 
         v.setVolumen_max(vehiculo.getVolumen_max());
-        v.setEstado(vehiculo.getEstado());
+        v.setDisponible(vehiculo.getDisponible());
         v.setPlaca(vehiculo.getPlaca());
         v.setHabilitado(vehiculo.getHabilitado());
         v.setPeso_max(vehiculo.getPeso_max());
@@ -61,7 +61,7 @@ public class VehiculoServiceImpl implements VehiculoService{
         Vehiculo v = vehiculoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Vehiculo no encontrado"));
 
-        v.setEstado(vehiculo.getEstado());
+        v.setDisponible(vehiculo.getDisponible());
         v.setPlaca(vehiculo.getPlaca());
         v.setHabilitado(vehiculo.getHabilitado());
         v.setPeso_max(vehiculo.getPeso_max());

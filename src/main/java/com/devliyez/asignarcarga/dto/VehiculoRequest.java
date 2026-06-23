@@ -8,7 +8,7 @@ public class VehiculoRequest {
     private Double peso_max;
     private Double volumen_max;
     private String placa;
-    private Boolean estado;
+    private Boolean disponible;
     private Boolean habilitado;
 
 

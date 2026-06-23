@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 @Data
 public class CargaResponse {
 
+    private Long id;
     private LocalDateTime fechaRegistro;
     private LocalDateTime fechaRecojo;
     private Double peso;

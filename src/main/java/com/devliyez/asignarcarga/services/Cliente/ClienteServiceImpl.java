@@ -1,4 +1,4 @@
-package com.devliyez.asignarcarga.services;
+package com.devliyez.asignarcarga.services.Cliente;
 
 import com.devliyez.asignarcarga.dto.ClienteRegistrar;
 import com.devliyez.asignarcarga.dto.ClienteRequest;
@@ -15,7 +15,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ClienteServiceImpl implements ClienteService{
+public class ClienteServiceImpl implements ClienteService {
 
     private final ClienteRepository clienteRepository;
     private final UsuarioRepository usuarioRepository;

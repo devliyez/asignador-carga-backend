@@ -6,6 +6,7 @@ import lombok.Data;
 @Data
 public class DetallecargaResponse {
 
+    private Long id;
     private String producto;
     private Integer cantidad;
     private Double peso;

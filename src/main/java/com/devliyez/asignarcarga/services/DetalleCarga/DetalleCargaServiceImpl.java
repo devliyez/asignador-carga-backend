@@ -1,4 +1,4 @@
-package com.devliyez.asignarcarga.services;
+package com.devliyez.asignarcarga.services.DetalleCarga;
 
 import com.devliyez.asignarcarga.dto.DetalleCargaRequest;
 import com.devliyez.asignarcarga.dto.DetallecargaResponse;
@@ -11,12 +11,11 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class DetalleCargaServiceImpl implements DetalleCargaService{
+public class DetalleCargaServiceImpl implements DetalleCargaService {
 
     private final DetalleCargaRepository detalleCargaRepository;
     private final CargaRepository cargaRepository;

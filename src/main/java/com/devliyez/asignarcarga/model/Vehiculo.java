@@ -16,6 +16,6 @@ public class Vehiculo {
 
     @Column(length = 7)
     private String placa;
-    private Boolean estado;
+    private Boolean disponible;
     private Boolean habilitado;
 }

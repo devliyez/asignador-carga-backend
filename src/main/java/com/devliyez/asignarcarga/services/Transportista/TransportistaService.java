@@ -1,4 +1,4 @@
-package com.devliyez.asignarcarga.services;
+package com.devliyez.asignarcarga.services.Transportista;
 
 import com.devliyez.asignarcarga.dto.TransportistaRegistrar;
 import com.devliyez.asignarcarga.dto.TransportistaRequest;
