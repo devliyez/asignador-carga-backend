@@ -22,22 +22,23 @@ public class VehiculoController {
     }
 
     @GetMapping("/{id}")
-    public VehiculoResponse getVehiculoById(Long id){
+    public VehiculoResponse getVehiculoById(@PathVariable Long id){
         return vehiculoService.getVehiculoById(id);
     }
 
     @PostMapping("/crear")
-    public VehiculoResponse postVehiculo(VehiculoRequest vehiculoRequest){
+    public VehiculoResponse postVehiculo(@RequestBody VehiculoRequest vehiculoRequest){
+        System.out.println("Desde el Controller" + vehiculoRequest);
         return vehiculoService.postVehiculo(vehiculoRequest);
     }
 
     @PutMapping("/actualizar/{id}")
-    public VehiculoResponse updateVehiculo(VehiculoRequest v , Long id){
+    public VehiculoResponse updateVehiculo(@RequestBody VehiculoRequest v ,@PathVariable Long id){
         return vehiculoService.updateVehiculo(v,id);
     }
 
     @DeleteMapping("/eliminar/{id}")
-    public void deleteVehiculo(Long id){
+    public void deleteVehiculo(@PathVariable Long id){
         vehiculoService.deleteVehiculo(id);
     }
 

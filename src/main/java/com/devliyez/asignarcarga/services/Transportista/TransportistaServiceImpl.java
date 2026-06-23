@@ -26,6 +26,7 @@ public class TransportistaServiceImpl implements TransportistaService {
     public List<TransportistaResponse> getTransportistas(){
         return transportistaRepository.findAll()
                 .stream()
+                .filter(t -> t.getUsuario().getHabilitado().equals(true))
                 .map(TransportistaResponse::new)
                 .toList();
     }

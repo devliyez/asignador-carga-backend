@@ -7,8 +7,6 @@ public class ClienteRegistrar {
 
     private String email;
     private String password;
-    private String rol;
-
     private String nombre;
     private String telefono;
 }

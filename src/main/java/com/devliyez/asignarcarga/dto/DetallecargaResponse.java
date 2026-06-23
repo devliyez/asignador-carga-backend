@@ -13,6 +13,7 @@ public class DetallecargaResponse {
     private Double volumen;
 
     public DetallecargaResponse(DetalleCarga detalleCarga) {
+        this.id = detalleCarga.getId();
         this.producto = detalleCarga.getProducto();
         this.cantidad = detalleCarga.getCantidad();
         this.peso = detalleCarga.getPeso();

@@ -17,6 +17,7 @@ public class VehiculoResponse {
     private Boolean habilitado;
 
     public VehiculoResponse(Vehiculo vehiculo) {
+        this.id = vehiculo.getId();
         this.peso_max = vehiculo.getPeso_max();
         this.volumen_max = vehiculo.getVolumen_max();
         this.placa = vehiculo.getPlaca();

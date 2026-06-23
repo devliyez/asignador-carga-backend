@@ -7,6 +7,7 @@ import com.devliyez.asignarcarga.repository.VehiculoRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class VehiculoServiceImpl implements VehiculoService {
     public List<VehiculoResponse> getVehiculos(){
         return vehiculoRepository.findAll()
                 .stream()
+                .filter(v -> v.getHabilitado().equals(true))
                 .map(VehiculoResponse::new)
                 .toList();
     }
@@ -37,7 +39,9 @@ public class VehiculoServiceImpl implements VehiculoService {
     //POST VEHICULO
     public VehiculoResponse postVehiculo(VehiculoRequest vehiculo){
 
-        if(vehiculo.getDisponible() == null || vehiculo.getPlaca().equals("") || vehiculo.getVolumen_max() == null || vehiculo.getPeso_max() == null
+        System.out.println(vehiculo);
+
+        if(vehiculo.getDisponible() == null || vehiculo.getVolumen_max() == null || vehiculo.getPeso_max() == null
         ){
             throw new RuntimeException("No puede haber datos vacios");
         }
@@ -76,6 +80,7 @@ public class VehiculoServiceImpl implements VehiculoService {
 
         Vehiculo v = vehiculoRepository.findById(id).orElseThrow(() -> new RuntimeException("No encontrado"));
         v.setHabilitado(false);
+        vehiculoRepository.save(v);
     }
 
 }

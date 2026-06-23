@@ -22,22 +22,22 @@ public class TransportistaController {
     }
 
     @GetMapping("/{id}")
-    public TransportistaResponse getTransportistaById(Long id){
+    public TransportistaResponse getTransportistaById(@PathVariable Long id){
         return transportistaService.getTransportistaById(id);
     }
 
     @PostMapping("/crear")
-    public TransportistaResponse postTransportista(TransportistaRegistrar t){
+    public TransportistaResponse postTransportista(@RequestBody TransportistaRegistrar t){
         return transportistaService.postTransportista(t);
     }
 
     @PutMapping("/actualizar/{id}")
-    public TransportistaResponse updateTransportista(TransportistaRequest t, Long id){
+    public TransportistaResponse updateTransportista(@RequestBody TransportistaRequest t,@PathVariable Long id){
         return transportistaService.updateTransportista(t,id);
     }
 
-    @DeleteMapping("/eliminar")
-    public void deleteTransportista(Long id){
+    @DeleteMapping("/eliminar/{id}")
+    public void deleteTransportista(@PathVariable Long id){
         transportistaService.deleteTransportista(id);
     }
 

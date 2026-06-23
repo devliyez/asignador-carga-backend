@@ -13,8 +13,6 @@ public class Vehiculo {
     private Long id;
     private Double peso_max;
     private Double volumen_max;
-
-    @Column(length = 7)
     private String placa;
     private Boolean disponible;
     private Boolean habilitado;
