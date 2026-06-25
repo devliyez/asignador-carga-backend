@@ -24,6 +24,7 @@ public class ClienteServiceImpl implements ClienteService {
     public List<ClienteResponse> getClientes() {
         return clienteRepository.findAll()
                 .stream()
+                .filter(c -> c.getUsuario().getHabilitado().equals(true))
                 .map(ClienteResponse:: new)
                 .toList();
     }

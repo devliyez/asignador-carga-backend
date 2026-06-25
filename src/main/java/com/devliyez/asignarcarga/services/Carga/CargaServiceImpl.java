@@ -50,6 +50,7 @@ public class CargaServiceImpl implements CargaService {
 
         Carga c = new Carga();
 
+
         c.setFechaRecojo(carga.getFechaRecojo());
         c.setFechaRegistro(carga.getFechaRegistro());
         c.setDestino(carga.getDestino());
@@ -124,7 +125,8 @@ public class CargaServiceImpl implements CargaService {
         Asignacion asignacion = new Asignacion();
         asignacion.setCarga(carga);
         asignacion.setVehiculo(vehiculo);
-        asignacion.setTransportista(transportista);
+        asignacion.setTransportista(transportista)
+        ;
 
 
 

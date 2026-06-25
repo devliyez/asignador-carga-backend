@@ -10,11 +10,13 @@ public class TransportistaResponse {
     private String nombre;
     private String telefono;
     private Boolean disponible;
+    private String rol;
 
     public TransportistaResponse(Transportista transportista) {
         this.id = transportista.getUsuarioId();
         this.nombre = transportista.getNombre();
         this.telefono = transportista.getTelefono();
         this.disponible = transportista.getDisponible();
+        this.rol = transportista.getUsuario().getRol();
     }
 }

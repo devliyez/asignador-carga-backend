@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 public class AsignacionResponse {
 
     private Long id;
+    private String cliente;
     private String transportista;
     private String vehiculo;
     private String carga;
@@ -17,6 +18,7 @@ public class AsignacionResponse {
 
     public AsignacionResponse(Asignacion asignacion) {
         this.id = asignacion.getId();
+        this.cliente = asignacion.getCarga().getCliente().getNombre();
         this.transportista = asignacion.getTransportista().getNombre();
         this.vehiculo = asignacion.getVehiculo().getPlaca();
         this.carga = asignacion.getCarga().getDestino();

@@ -13,7 +13,7 @@ public class VehiculoResponse {
     private Double peso_max;
     private Double volumen_max;
     private String placa;
-    private Boolean estado;
+    private Boolean disponible;
     private Boolean habilitado;
 
     public VehiculoResponse(Vehiculo vehiculo) {
@@ -21,7 +21,7 @@ public class VehiculoResponse {
         this.peso_max = vehiculo.getPeso_max();
         this.volumen_max = vehiculo.getVolumen_max();
         this.placa = vehiculo.getPlaca();
-        this.estado = vehiculo.getDisponible();
+        this.disponible = vehiculo.getDisponible();
         this.habilitado = vehiculo.getDisponible();
     }
 }
