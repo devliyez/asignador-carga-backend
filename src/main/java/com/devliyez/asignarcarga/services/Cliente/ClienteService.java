@@ -1,8 +1,8 @@
 package com.devliyez.asignarcarga.services.Cliente;
 
-import com.devliyez.asignarcarga.dto.ClienteRegistrar;
-import com.devliyez.asignarcarga.dto.ClienteRequest;
-import com.devliyez.asignarcarga.dto.ClienteResponse;
+import com.devliyez.asignarcarga.dto.ClienteDTO.ClienteRegistrar;
+import com.devliyez.asignarcarga.dto.ClienteDTO.ClienteRequest;
+import com.devliyez.asignarcarga.dto.ClienteDTO.ClienteResponse;
 
 import java.util.List;
 

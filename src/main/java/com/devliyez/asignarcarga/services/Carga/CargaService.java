@@ -14,4 +14,7 @@ public interface CargaService {
     CargaResponse updateCarga(CargaRequest carga, Long id);
     void deleteCargaById(Long id);
 
+    void aprobarCarga(Long cargaid);
+    void entregarCarga(Long cargaid);
+
 }

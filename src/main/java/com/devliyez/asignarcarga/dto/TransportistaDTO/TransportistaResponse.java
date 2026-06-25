@@ -1,4 +1,4 @@
-package com.devliyez.asignarcarga.dto;
+package com.devliyez.asignarcarga.dto.TransportistaDTO;
 
 import com.devliyez.asignarcarga.model.Transportista;
 import lombok.Data;

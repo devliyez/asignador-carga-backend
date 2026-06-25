@@ -1,8 +1,8 @@
 package com.devliyez.asignarcarga.controller;
 
-import com.devliyez.asignarcarga.dto.TransportistaRegistrar;
-import com.devliyez.asignarcarga.dto.TransportistaRequest;
-import com.devliyez.asignarcarga.dto.TransportistaResponse;
+import com.devliyez.asignarcarga.dto.TransportistaDTO.TransportistaRegistrar;
+import com.devliyez.asignarcarga.dto.TransportistaDTO.TransportistaRequest;
+import com.devliyez.asignarcarga.dto.TransportistaDTO.TransportistaResponse;
 import com.devliyez.asignarcarga.services.Transportista.TransportistaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

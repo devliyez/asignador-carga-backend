@@ -1,4 +1,4 @@
-package com.devliyez.asignarcarga.dto;
+package com.devliyez.asignarcarga.dto.ClienteDTO;
 
 import lombok.Data;
 

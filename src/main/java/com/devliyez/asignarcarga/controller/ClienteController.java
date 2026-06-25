@@ -1,8 +1,8 @@
 package com.devliyez.asignarcarga.controller;
 
-import com.devliyez.asignarcarga.dto.ClienteRegistrar;
-import com.devliyez.asignarcarga.dto.ClienteRequest;
-import com.devliyez.asignarcarga.dto.ClienteResponse;
+import com.devliyez.asignarcarga.dto.ClienteDTO.ClienteRegistrar;
+import com.devliyez.asignarcarga.dto.ClienteDTO.ClienteRequest;
+import com.devliyez.asignarcarga.dto.ClienteDTO.ClienteResponse;
 import com.devliyez.asignarcarga.services.Cliente.ClienteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

@@ -1,8 +1,8 @@
 package com.devliyez.asignarcarga.services.Transportista;
 
-import com.devliyez.asignarcarga.dto.TransportistaRegistrar;
-import com.devliyez.asignarcarga.dto.TransportistaRequest;
-import com.devliyez.asignarcarga.dto.TransportistaResponse;
+import com.devliyez.asignarcarga.dto.TransportistaDTO.TransportistaRegistrar;
+import com.devliyez.asignarcarga.dto.TransportistaDTO.TransportistaRequest;
+import com.devliyez.asignarcarga.dto.TransportistaDTO.TransportistaResponse;
 import com.devliyez.asignarcarga.model.Transportista;
 import com.devliyez.asignarcarga.model.Usuario;
 import com.devliyez.asignarcarga.repository.TransportistaRepository;
