@@ -3,14 +3,8 @@ package com.devliyez.asignarcarga.services.Carga;
 
 import com.devliyez.asignarcarga.dto.CargaRequest;
 import com.devliyez.asignarcarga.dto.CargaResponse;
-import com.devliyez.asignarcarga.model.Asignacion;
-import com.devliyez.asignarcarga.model.Carga;
-import com.devliyez.asignarcarga.model.Transportista;
-import com.devliyez.asignarcarga.model.Vehiculo;
-import com.devliyez.asignarcarga.repository.AsignacionRepository;
-import com.devliyez.asignarcarga.repository.CargaRepository;
-import com.devliyez.asignarcarga.repository.TransportistaRepository;
-import com.devliyez.asignarcarga.repository.VehiculoRepository;
+import com.devliyez.asignarcarga.model.*;
+import com.devliyez.asignarcarga.repository.*;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +20,7 @@ public class CargaServiceImpl implements CargaService {
     private final TransportistaRepository transportistaRepository;
     private final VehiculoRepository vehiculoRepository;
     private final AsignacionRepository asignacionRepository;
+    private final ClienteRepository clienteRepository;
 
 
     @Override
@@ -46,12 +41,12 @@ public class CargaServiceImpl implements CargaService {
     }
 
     @Override
+    @Transactional
     public CargaResponse postCarga(CargaRequest carga) {
 
         Carga c = new Carga();
 
 
-        c.setFechaRecojo(carga.getFechaRecojo());
         c.setFechaRegistro(carga.getFechaRegistro());
         c.setDestino(carga.getDestino());
         c.setOrigen(carga.getOrigen());
@@ -60,8 +55,10 @@ public class CargaServiceImpl implements CargaService {
         c.setDescripcion(carga.getDescripcion());
         c.setCotizacion(0.0);
         c.setEstado("PENDIENTE");
-        c.setCliente(carga.getCliente());
 
+        Cliente cliente = clienteRepository.findById(carga.getClienteId())
+                        .orElseThrow(() -> new EntityNotFoundException(""));
+        c.setCliente(cliente);
         c.setHabilitado(true);
         cargaRepository.save(c);
 
@@ -69,22 +66,22 @@ public class CargaServiceImpl implements CargaService {
     }
 
     @Override
+    @Transactional
     public CargaResponse updateCarga(CargaRequest carga, Long id) {
 
         Carga c = cargaRepository.findById(id).orElseThrow(() -> new RuntimeException("Carga no encontrada"));
 
-
-        c.setFechaRecojo(carga.getFechaRecojo());
-        c.setPeso(carga.getPeso());
-        c.setVolumen(carga.getVolumen());
         c.setOrigen(carga.getOrigen());
-        c.setCotizacion(carga.getCotizacion());
         c.setDestino(carga.getDestino());
         c.setDescripcion(carga.getDescripcion());
-        c.setFechaRegistro(carga.getFechaRegistro());
-        c.setHabilitado(carga.getHabilitado());
-        c.setEstado(carga.getEstado());
 
+
+
+        Cliente cliente = clienteRepository.findById(carga.getClienteId())
+                .orElseThrow(() -> new EntityNotFoundException(""));
+        c.setCliente(cliente);
+
+        // Cliente no modifica Habilitado, Cotizacion y Fecharegistro
         cargaRepository.save(c);
 
         return new CargaResponse(c);
@@ -125,10 +122,7 @@ public class CargaServiceImpl implements CargaService {
         Asignacion asignacion = new Asignacion();
         asignacion.setCarga(carga);
         asignacion.setVehiculo(vehiculo);
-        asignacion.setTransportista(transportista)
-        ;
-
-
+        asignacion.setTransportista(transportista);
 
         //Cambios
         transportista.setDisponible(false);

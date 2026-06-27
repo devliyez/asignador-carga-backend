@@ -22,8 +22,6 @@ public class Carga {
     @Column(updatable = false)
     private LocalDateTime fechaRegistro;
 
-    private LocalDateTime fechaRecojo;
-
     private Double peso;
     private Double volumen;
     private String origen;

@@ -9,15 +9,9 @@ import java.time.LocalDateTime;
 public class CargaRequest {
 
     private LocalDateTime fechaRegistro;
-    private LocalDateTime fechaRecojo;
-    private Double peso;
-    private Double volumen;
     private String origen;
     private String destino;
     private String descripcion;
-    private Double cotizacion;
-    private String estado;
-    private Boolean habilitado;
-    private Cliente cliente;
+    private Long clienteId;
 
 }

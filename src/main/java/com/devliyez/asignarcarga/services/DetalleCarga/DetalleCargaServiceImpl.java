@@ -6,11 +6,14 @@ import com.devliyez.asignarcarga.model.Carga;
 import com.devliyez.asignarcarga.model.DetalleCarga;
 import com.devliyez.asignarcarga.repository.CargaRepository;
 import com.devliyez.asignarcarga.repository.DetalleCargaRepository;
+import com.devliyez.asignarcarga.services.DetalleCarga.CotizacionCalculos;
+
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -34,10 +37,12 @@ public class DetalleCargaServiceImpl implements DetalleCargaService {
 
 
 
+
     @Override
     @Transactional
     public DetallecargaResponse postDetalleACarga(Long cargaId, DetalleCargaRequest dto) {
 
+        //ID de la Carga
         Carga carga = cargaRepository.findById(cargaId)
                 .orElseThrow(() -> new EntityNotFoundException("Carga no encontrada"));
 
@@ -51,8 +56,34 @@ public class DetalleCargaServiceImpl implements DetalleCargaService {
 
         DetalleCarga detalleGuardado = detalleCargaRepository.save(detalle);
 
-        carga.setPeso(carga.getPeso() + dto.getPeso());
-        carga.setVolumen(carga.getVolumen() + dto.getVolumen());
+        // ASIGNAR PESOS Y VOLUMEN
+
+        List<DetalleCarga> detalles_carga = detalleCargaRepository.findByCargaId(cargaId);
+
+        List<Double> pesos_total = new ArrayList<>();
+        List<Double> volumen_total = new ArrayList<>();
+
+        for(Integer i = 0; i < detalles_carga.size() ;i++){
+            pesos_total.add(detalles_carga.get(i).getPeso());
+        }
+
+        for(Integer i = 0 ; i <detalles_carga.size() ; i++){
+            volumen_total.add(detalles_carga.get(i).getVolumen());
+        }
+
+
+
+
+        CotizacionCalculos calculo = new CotizacionCalculos();
+        List<Double> valores = calculo.valoresTotales(pesos_total, volumen_total);
+
+        System.out.println("Valores de peso y volumen" + valores);
+
+        carga.setVolumen(valores.get(0));
+        carga.setPeso(valores.get(1));
+
+//        carga.setPeso(carga.getPeso() + (dto.getPeso() * dto.getCantidad()));
+//        carga.setVolumen(carga.getVolumen() + (dto.getVolumen() * dto.getCantidad()));
 
         //Dependiendo de como se carguen los detalles de la carga podria incurrir
         //en multiples peticiones a la vez.
@@ -62,10 +93,13 @@ public class DetalleCargaServiceImpl implements DetalleCargaService {
         return new DetallecargaResponse(detalleGuardado);
     }
 
+
+
     @Override
     @Transactional
     public DetallecargaResponse updateDetalleCarga(Long id, DetalleCargaRequest dto) {
 
+        // ID del Detalle Carga
         DetalleCarga detalle = detalleCargaRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Detalle no encontrado"));
 

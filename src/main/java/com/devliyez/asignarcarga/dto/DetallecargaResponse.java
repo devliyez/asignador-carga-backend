@@ -2,8 +2,10 @@ package com.devliyez.asignarcarga.dto;
 
 import com.devliyez.asignarcarga.model.DetalleCarga;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class DetallecargaResponse {
 
     private Long id;

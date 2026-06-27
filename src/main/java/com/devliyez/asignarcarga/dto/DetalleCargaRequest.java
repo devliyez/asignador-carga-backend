@@ -7,6 +7,6 @@ public class DetalleCargaRequest {
 
     private String producto;
     private Integer cantidad;
-    private Double peso;
+    private Double peso; //KG
     private Double volumen;
 }

@@ -11,7 +11,6 @@ public class CargaResponse {
 
     private Long id;
     private LocalDateTime fechaRegistro;
-    private LocalDateTime fechaRecojo;
     private Double peso;
     private Double volumen;
     private String origen;
@@ -23,7 +22,7 @@ public class CargaResponse {
 
     public CargaResponse(Carga carga) {
 
-        this.fechaRecojo = carga.getFechaRecojo();
+        this.id = carga.getId();
         this.fechaRegistro = carga.getFechaRegistro();
         this.peso = carga.getPeso();
         this.volumen = carga.getVolumen();
