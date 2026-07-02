@@ -17,7 +17,8 @@ public class CargaResponse {
     private String destino;
     private String descripcion;
     private Double cotizacion;
-    private Cliente cliente;
+    private String estado;
+    private String cliente;
     //Aqui evito los Detalles
 
     public CargaResponse(Carga carga) {
@@ -30,7 +31,8 @@ public class CargaResponse {
         this.destino = carga.getDestino();
         this.descripcion = carga.getDescripcion();
         this.cotizacion = carga.getCotizacion();
-        this.cliente = carga.getCliente();
+        this.estado = carga.getEstado();
+        this.cliente = carga.getCliente().getNombre();
 
     }
 }

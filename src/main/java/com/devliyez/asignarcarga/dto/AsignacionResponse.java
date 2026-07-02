@@ -12,7 +12,8 @@ public class AsignacionResponse {
     private String cliente;
     private String transportista;
     private String vehiculo;
-    private String carga;
+    private String origen;
+    private String destino;
     private LocalDateTime fechaRegistro;
     private String estado;
 
@@ -21,7 +22,8 @@ public class AsignacionResponse {
         this.cliente = asignacion.getCarga().getCliente().getNombre();
         this.transportista = asignacion.getTransportista().getNombre();
         this.vehiculo = asignacion.getVehiculo().getPlaca();
-        this.carga = asignacion.getCarga().getDestino();
+        this.origen = asignacion.getCarga().getOrigen();
+        this.destino = asignacion.getCarga().getDestino();
         this.fechaRegistro = asignacion.getFechaRegistro();
         this.estado = asignacion.getCarga().getEstado();
     }

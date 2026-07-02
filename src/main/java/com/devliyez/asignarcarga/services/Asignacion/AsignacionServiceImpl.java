@@ -17,24 +17,20 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class AsignacionServiceImpl {
+public class AsignacionServiceImpl implements AsignacionService{
 
     private final AsignacionRepository asignacionRepository;
-    private final ClienteRepository clienteRepository;
-    private final CargaRepository cargaRepository;
 
-    public List<AsignacionResponse> getAsignacionById(Long id){
-
-//        Carga carga = cargaRepository.findById(id).orElseThrow( () ->
-//                new EntityNotFoundException("No encontrado"));
+    public AsignacionResponse getAsignacionById(Long id){
 
 
+        Asignacion asignaciones =asignacionRepository.findByCargaId(id);
 
-        Asignacion asignaciones = asignacionRepository.findByCargaId(id);
+        if(asignaciones == null){
+            throw new EntityNotFoundException("Asignacion no encontrada.");
+        }
 
-        List<AsignacionResponse> asignacionesrpta;
-        asignacionesrpta = new ArrayList<>((Collection) asignaciones);
 
-        return asignacionesrpta;
+        return new AsignacionResponse(asignaciones);
     }
 }

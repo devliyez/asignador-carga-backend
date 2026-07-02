@@ -40,4 +40,14 @@ public class CargaController {
         cargaService.deleteCargaById(id);
     }
 
+    @PutMapping("/aprobar/{id}")
+    public void aprobarCarga(@PathVariable Long id){
+        cargaService.aprobarCarga(id);
+    }
+
+    @PutMapping("/entregar/{id}")
+    public void entregarCarga(@PathVariable Long id){
+        cargaService.entregarCarga(id);
+    }
+
 }

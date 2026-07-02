@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface AsignacionService {
 
-    List<AsignacionResponse> getAsignacionById(Long id);
+    AsignacionResponse getAsignacionById(Long id);
 
 
 }

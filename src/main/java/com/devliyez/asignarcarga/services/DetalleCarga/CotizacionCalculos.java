@@ -69,16 +69,12 @@ public class CotizacionCalculos {
         return valores;
     }
 
-    private double cotizar(double pesoTotal, double volumenTotal) {
-        double costoBase = 100.00;
-        double precioPorKg = 0.50;
+    public double cotizar(double pesoTotal, double volumenTotal) {
+        double costoBase = 120.00;
+        double precioPorKg = 0.60;
         double precioPorVolumen = 2.00;
 
         return costoBase + (pesoTotal * precioPorKg) + (volumenTotal * precioPorVolumen);
     }
-
-
-
-
 
 }

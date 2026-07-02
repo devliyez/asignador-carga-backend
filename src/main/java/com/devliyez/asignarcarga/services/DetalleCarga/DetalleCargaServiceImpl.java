@@ -67,12 +67,17 @@ public class DetalleCargaServiceImpl implements DetalleCargaService {
 
         carga.setVolumen(valores.get(0));
         carga.setPeso(valores.get(1));
+
+        Double cotizacion =  calculos.cotizar(valores.get(0), valores.get(1));
+
+        carga.setCotizacion(cotizacion);
 //forma simple
 //        carga.setPeso(carga.getPeso() + (dto.getPeso() * dto.getCantidad()));
 //        carga.setVolumen(carga.getVolumen() + (dto.getVolumen() * dto.getCantidad()));
 
         //Dependiendo de como se carguen los detalles de la carga podria incurrir
         //en multiples peticiones a la vez.
+
 
         cargaRepository.save(carga);
 
@@ -100,12 +105,21 @@ public class DetalleCargaServiceImpl implements DetalleCargaService {
         detalle.setProducto(dto.getProducto());
         DetalleCarga detalleActual = detalleCargaRepository.save(detalle);
 
-        carga.setVolumen(carga.getVolumen() + detalleActual.getVolumen());
-        carga.setPeso(carga.getPeso() + detalleActual.getPeso());
+//        carga.setVolumen(carga.getVolumen() + detalleActual.getVolumen());
+//        carga.setPeso(carga.getPeso() + detalleActual.getPeso());
+
+        CotizacionCalculos calculos = new CotizacionCalculos(detalleCargaRepository);
+
+        List<Double> valores = calculos.asignarValores(carga.getId());
+
+        carga.setVolumen(valores.get(0));
+        carga.setPeso(valores.get(1));
+        Double cotizacion =  calculos.cotizar(valores.get(0), valores.get(1));
+        carga.setCotizacion(cotizacion);
+
         cargaRepository.save(carga);
 
         return new DetallecargaResponse(detalleActual);
-
     }
 
     public void deleteDetalleCarga(Long id){

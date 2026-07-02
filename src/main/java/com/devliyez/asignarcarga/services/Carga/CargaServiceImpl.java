@@ -47,7 +47,6 @@ public class CargaServiceImpl implements CargaService {
         Carga c = new Carga();
 
 
-        c.setFechaRegistro(carga.getFechaRegistro());
         c.setDestino(carga.getDestino());
         c.setOrigen(carga.getOrigen());
         c.setPeso(0.0);
@@ -92,8 +91,10 @@ public class CargaServiceImpl implements CargaService {
 
         Carga carga = cargaRepository.findById(id).orElseThrow(() -> new RuntimeException("No encontrado"));
 
+        carga.setEstado("CANCELADO");
         carga.setHabilitado(false);
 
+        cargaRepository.save(carga);
 
     }
 
@@ -134,7 +135,6 @@ public class CargaServiceImpl implements CargaService {
         cargaRepository.save(carga);
         asignacionRepository.save(asignacion);
 
-        System.out.println("Asignacion: " + asignacion);
 
     }
 

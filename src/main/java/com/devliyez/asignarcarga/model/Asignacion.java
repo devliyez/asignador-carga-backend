@@ -1,5 +1,6 @@
 package com.devliyez.asignarcarga.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -17,14 +18,17 @@ public class Asignacion {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "carga_id", nullable = false)
+    @JsonIgnore
     private Carga carga;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "transportista_id", nullable = false)
+    @JsonIgnore
     private Transportista transportista;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "vehiculo_id", nullable = false)
+    @JsonIgnore
     private Vehiculo vehiculo;
 
     @CreationTimestamp

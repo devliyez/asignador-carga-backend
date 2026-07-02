@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 @Data
 public class CargaRequest {
 
-    private LocalDateTime fechaRegistro;
     private String origen;
     private String destino;
     private String descripcion;
