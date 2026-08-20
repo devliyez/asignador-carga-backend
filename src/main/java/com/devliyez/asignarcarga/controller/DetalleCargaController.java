@@ -15,7 +15,7 @@ public class DetalleCargaController {
 
     private final DetalleCargaService detalleCargaService;
 
-    @GetMapping("/{id}")
+    @GetMapping("/{cargaid}")
     public List<DetallecargaResponse> getDetallesCargaById(@PathVariable Long cargaid){
 
         return detalleCargaService.getDetallesCargaById(cargaid);
