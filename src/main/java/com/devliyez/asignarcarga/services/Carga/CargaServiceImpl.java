@@ -3,6 +3,7 @@ package com.devliyez.asignarcarga.services.Carga;
 
 import com.devliyez.asignarcarga.dto.CargaRequest;
 import com.devliyez.asignarcarga.dto.CargaResponse;
+import com.devliyez.asignarcarga.dto.DetallecargaResponse;
 import com.devliyez.asignarcarga.model.*;
 import com.devliyez.asignarcarga.repository.*;
 import jakarta.persistence.EntityNotFoundException;
@@ -39,6 +40,15 @@ public class CargaServiceImpl implements CargaService {
 
         return new CargaResponse(carga);
     }
+
+    @Override
+    public List<CargaResponse> getCargaByClienteUsuarioId(Long id){
+        List<Carga> cargas = cargaRepository.findByClienteUsuarioId(id);
+
+        return  cargas.stream().map(CargaResponse :: new).toList();
+
+    }
+
 
     @Override
     @Transactional

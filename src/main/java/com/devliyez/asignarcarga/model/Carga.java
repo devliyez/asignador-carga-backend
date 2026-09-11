@@ -1,5 +1,6 @@
 package com.devliyez.asignarcarga.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -19,6 +20,7 @@ public class Carga {
     private Long id;
 
     @CreationTimestamp
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     @Column(updatable = false)
     private LocalDateTime fechaRegistro;
 

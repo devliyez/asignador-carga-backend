@@ -1,5 +1,6 @@
 package com.devliyez.asignarcarga.services.Cliente;
 
+import com.devliyez.asignarcarga.dto.CargaResponse;
 import com.devliyez.asignarcarga.dto.ClienteDTO.ClienteRegistrar;
 import com.devliyez.asignarcarga.dto.ClienteDTO.ClienteRequest;
 import com.devliyez.asignarcarga.dto.ClienteDTO.ClienteResponse;
@@ -36,6 +37,7 @@ public class ClienteServiceImpl implements ClienteService {
                 new EntityNotFoundException("Cliente no encontrado"));
         return new ClienteResponse(c);
     }
+
 
     @Override
     public ClienteResponse postCliente(ClienteRegistrar dto) {

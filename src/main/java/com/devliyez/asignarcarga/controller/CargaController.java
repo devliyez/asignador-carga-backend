@@ -10,10 +10,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/carga")
-@RequiredArgsConstructor
 public class CargaController {
 
     private final CargaService cargaService;
+
+    public CargaController(CargaService cargaService) {
+        this.cargaService = cargaService;
+    }
 
     @GetMapping
     public List<CargaResponse> getCarga(){
@@ -23,6 +26,11 @@ public class CargaController {
     @GetMapping("/{id}")
     public CargaResponse getCargaById(@PathVariable Long id){
         return cargaService.getCargaById(id);
+    }
+
+    @GetMapping("/cliente/{id}")
+    public List<CargaResponse> getCargaByClienteId(@PathVariable Long id){
+        return cargaService.getCargaByClienteUsuarioId(id);
     }
 
     @PostMapping("/crear")

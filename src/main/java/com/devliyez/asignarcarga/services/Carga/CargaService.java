@@ -10,6 +10,8 @@ public interface CargaService {
 
     List<CargaResponse> getCarga();
     CargaResponse getCargaById(Long id);
+    List<CargaResponse> getCargaByClienteUsuarioId(Long id);
+
     CargaResponse postCarga(CargaRequest carga);
     CargaResponse updateCarga(CargaRequest carga, Long id);
     void deleteCargaById(Long id);
