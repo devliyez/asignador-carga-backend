@@ -20,8 +20,8 @@ public class Carga {
     private Long id;
 
     @CreationTimestamp
-    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     @Column(updatable = false)
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private LocalDateTime fechaRegistro;
 
     private Double peso;
@@ -39,6 +39,5 @@ public class Carga {
     private Cliente cliente;
 
 
-    @OneToMany(mappedBy = "carga", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<DetalleCarga> detalles = new ArrayList<>();
+
 }

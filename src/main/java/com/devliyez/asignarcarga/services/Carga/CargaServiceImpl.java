@@ -3,7 +3,6 @@ package com.devliyez.asignarcarga.services.Carga;
 
 import com.devliyez.asignarcarga.dto.CargaRequest;
 import com.devliyez.asignarcarga.dto.CargaResponse;
-import com.devliyez.asignarcarga.dto.DetallecargaResponse;
 import com.devliyez.asignarcarga.model.*;
 import com.devliyez.asignarcarga.repository.*;
 import jakarta.persistence.EntityNotFoundException;
