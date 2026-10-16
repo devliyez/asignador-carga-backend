@@ -1,0 +1,25 @@
+package com.devliyez.backend.dto;
+
+import com.devliyez.backend.model.Vehiculo;
+import lombok.Data;
+
+
+@Data
+public class VehiculoResponse {
+
+    private Long id;
+    private Double peso_max;
+    private Double volumen_max;
+    private String placa;
+    private Boolean disponible;
+    private Boolean habilitado;
+
+    public VehiculoResponse(Vehiculo vehiculo) {
+        this.id = vehiculo.getId();
+        this.peso_max = vehiculo.getPeso_max();
+        this.volumen_max = vehiculo.getVolumen_max();
+        this.placa = vehiculo.getPlaca();
+        this.disponible = vehiculo.getDisponible();
+        this.habilitado = vehiculo.getDisponible();
+    }
+}
